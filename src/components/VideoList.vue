@@ -19,7 +19,7 @@ export default {
     },
     methods:{
        SearchVideos(){
-          youtube.SearchVideos(this.search,res=>{
+          youtube.SearchVideos(this.Pesquisa,res=>{
            this.videoList = res.data.items
           })  
         } 
