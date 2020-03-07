@@ -1,5 +1,12 @@
 <template>
-  <div></div>
+  <div>
+      <b-embed v-for="videoList in videoList" :key="videoList.index"
+    type="iframe"
+    aspect="4by3"
+    :src="url + videoList.id.videoId"
+    allowfullscreen
+  ></b-embed>
+  </div>
 </template>
 
 <script>

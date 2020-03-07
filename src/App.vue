@@ -1,6 +1,10 @@
 <template>
   <div>
-   <search-input @SendSearch="ReceivingSearch" v-show="listing"></search-input>
+   <search-input @SendSearch="ReceivingSearch" v-if="listing"></search-input>
+   <search-input class="video" @SendSearch="ReceivingSearch" v-else></search-input>
+   <band-details
+   :Pesquisa="dados"
+   ></band-details>
    <video-list
    :Pesquisa="dados"
    ></video-list> 
@@ -10,8 +14,9 @@
 <script>
 import SearchInput from './components/SearchInput'
 import VideoList from './components/VideoList'
+import BandDetails from './components/BandDetails'
 export default {
-   components:{SearchInput,VideoList},
+   components:{SearchInput,VideoList,BandDetails},
    data(){
      return {
        dados:'',
@@ -28,7 +33,8 @@ export default {
 </script>
 
 <style>
-.input{
-  margin-top: 18rem;
-}
+ .video{
+   display: block;
+   margin-top: -19rem;
+ }
 </style>
