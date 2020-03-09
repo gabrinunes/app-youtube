@@ -2,21 +2,17 @@
   <div>
    <search-input @SendSearch="ReceivingSearch" v-if="listing"></search-input>
    <search-input class="video" @SendSearch="ReceivingSearch" v-else></search-input>
-   <band-details
+   <details-artist
    :Pesquisa="dados"
-   ></band-details>
-   <video-list
-   :Pesquisa="dados"
-   ></video-list> 
+   ></details-artist>
   </div>
 </template>
 
 <script>
 import SearchInput from './components/SearchInput'
-import VideoList from './components/VideoList'
-import BandDetails from './components/BandDetails'
+import DetailsArtist from './components/Details'
 export default {
-   components:{SearchInput,VideoList,BandDetails},
+   components:{SearchInput,DetailsArtist},
    data(){
      return {
        dados:'',
