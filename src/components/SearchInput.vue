@@ -8,7 +8,7 @@
           <b-input required type="text"  class="form-control character-search-box"
             placeholder="(Ex. PinkFloyd, Iron Maiden, Pearl Jam, etc...)" v-model="search" @keyup.enter="SendSearch(search)"></b-input>
         </div>
-        <b-button class="btn btn-danger mb-2 float-right search-character-button" @click="SendSearch(search)">Search</b-button>
+        <b-button class="btn btn-danger mb-2 float-center search-character-button" @click="SendSearch(search)">Search</b-button>
       </form>
     </div>
   </div>
@@ -35,5 +35,7 @@ export default {
  .input{
      margin-top: 19rem;
  }
-
+.btn{
+  width: 15rem;
+}
 </style>
