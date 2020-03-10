@@ -1,22 +1,24 @@
 <template>
-   <div>
-     <div class="container">
-         <div class="row">
-             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+   <div class="container">
+        <b-card v-for="details in details.slice(0,1)" :key="details.index"
+    :title="details.name"
+    :img-src="details.images[0].url"
+    img-alt="Image"
+    img-top
+    tag="article"
+    style="max-width: 25rem;"
+    class="mb-2"
+  >
+    <b-card-text>
+    </b-card-text>
 
-             </div>
-         </div>
-         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-             <iframe class="featureVideo" :src="url+featureVideo.id.videoId" frameborder="0"></iframe>
-         </div>
-     </div>
-     <div class="row">
-         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" v-for="videos in videos" :key="videos.index">
-             <div class="ytb-card">
-                 <iframe  :src="url+videos.id.videoId" frameborder="0"></iframe>
-             </div>
-         </div>
-     </div>
+    <b-button href="#" variant="primary">Go somewhere</b-button>
+  </b-card>
+   <div class="row">
+       <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4" v-for="videos in videos" :key="videos.index">
+           <iframe :src="url+videos.id.videoId" frameborder="0" allowfullscreen></iframe>
+       </div>
+   </div>
    </div>
 </template>
 
@@ -29,8 +31,9 @@ export default {
           return {
               videos:[],
               details:[],
+              images:[],
               featureVideo:{},
-              url:'https://www.youtube.com/embed/'
+              url:'https://www.youtube.com/embed/',
           }
       },
       watch:{
@@ -48,20 +51,14 @@ export default {
           },
           SearchArtistDetails(){
               ticket.SearchArtist(this.Pesquisa,res =>{
-                  console.log(res.data._embedded)
+                  this.details = res.data._embedded.attractions
+                  this.images = res.data._embedded.attractions.map(res=> res.images)
               })
           }
       }
 }
 </script>
 
-<style scoped>
-.featureVideo {
-        width: 100%;
-        height: 480px;
-        margin-top: 40px;
-        margin-left: 30px;
-    }
-   
-
+<style  scoped>
+ 
 </style>
