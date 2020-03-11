@@ -1,5 +1,7 @@
 <template>
-   <div class="container">
+    <div>
+      <b-spinner v-if="loading"></b-spinner>
+      <div class="container" v-else>
        <div class="row">
              <b-card v-for="details in details.slice(0,1)" :key="details.index"
     :title="details.name"
@@ -47,6 +49,8 @@
        </div>
    </div>
    </div>
+    </div>
+   
 </template>
 
 <script>
@@ -59,6 +63,7 @@ export default {
               videos:[],
               details:[],
               images:[],
+              loading: false,
               url:'https://www.youtube.com/embed/',
           }
       },
@@ -70,14 +75,18 @@ export default {
       },
       methods:{
           SearchVideos(){
+            this.loading = true
             youtube.SearchVideos(this.Pesquisa,res=>{
                 this.videos = res.data.items
+                this.loading = false
             })  
           },
           SearchArtistDetails(){
+            this.loading = true
               ticket.SearchArtist(this.Pesquisa,res =>{
                   this.details = res.data._embedded.attractions
                   this.images = res.data._embedded.attractions.map(res=> res.images)
+                  this.loading = false
               })
           }
       }
